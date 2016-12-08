@@ -1,0 +1,82 @@
+
+=== Starting training for language 'eng'
+[Wed Dec 7 11:11:35 DST 2016] /usr/local/bin/text2image --fonts_dir=/usr/share/fonts --font=Impact Condensed --outputbase=/tmp/font_tmp.UniiFh7ACk/sample_text.txt --text=/tmp/font_tmp.UniiFh7ACk/sample_text.txt --fontconfig_tmpdir=/tmp/font_tmp.UniiFh7ACk
+Rendered page 0 to file /tmp/font_tmp.UniiFh7ACk/sample_text.txt.tif
+
+=== Phase I: Generating training images ===
+Rendering using Impact Condensed
+[Wed Dec 7 11:11:40 DST 2016] /usr/local/bin/text2image --fontconfig_tmpdir=/tmp/font_tmp.UniiFh7ACk --fonts_dir=/usr/share/fonts --strip_unrenderable_words --leading=32 --char_spacing=0.0 --exposure=0 --outputbase=/tmp/tmp.zcXnVfrrrA/eng/eng.Impact_Condensed.exp0 --font=Impact Condensed --text=../langdata/eng/eng.training_text
+Rendered page 0 to file /tmp/tmp.zcXnVfrrrA/eng/eng.Impact_Condensed.exp0.tif
+Rendered page 1 to file /tmp/tmp.zcXnVfrrrA/eng/eng.Impact_Condensed.exp0.tif
+Extracting font properties of Impact Condensed
+[Wed Dec 7 11:11:45 DST 2016] /usr/local/bin/text2image --fontconfig_tmpdir=/tmp/font_tmp.UniiFh7ACk --fonts_dir=/usr/share/fonts --strip_unrenderable_words --leading=32 --char_spacing=0.0 --exposure=0 --outputbase=/tmp/tmp.zcXnVfrrrA/eng/eng.Impact_Condensed.exp0 --font=Impact Condensed --ligatures=false --text=../langdata/eng/eng.training_text.train_ngrams --only_extract_font_properties --ptsize=32
+Extracting font properties only
+Done!
+
+=== Phase UP: Generating unicharset and unichar properties files ===
+[Wed Dec 7 11:11:46 DST 2016] /usr/local/bin/unicharset_extractor -D /tmp/tmp.zcXnVfrrrA/eng/ /tmp/tmp.zcXnVfrrrA/eng/eng.Impact_Condensed.exp0.box
+Extracting unicharset from /tmp/tmp.zcXnVfrrrA/eng/eng.Impact_Condensed.exp0.box
+Wrote unicharset file /tmp/tmp.zcXnVfrrrA/eng//unicharset.
+[Wed Dec 7 11:11:47 DST 2016] /usr/local/bin/set_unicharset_properties -U /tmp/tmp.zcXnVfrrrA/eng/eng.unicharset -O /tmp/tmp.zcXnVfrrrA/eng/eng.unicharset -X /tmp/tmp.zcXnVfrrrA/eng/eng.xheights --script_dir=../langdata
+Loaded unicharset of size 113 from file /tmp/tmp.zcXnVfrrrA/eng/eng.unicharset
+Setting unichar properties
+Other case É of é is not in unicharset
+Warning: properties incomplete for index 25 = ~
+Writing unicharset to file /tmp/tmp.zcXnVfrrrA/eng/eng.unicharset
+
+=== Phase D: Generating Dawg files ===
+Generating word Dawg
+[Wed Dec 7 11:11:47 DST 2016] /usr/local/bin/wordlist2dawg -r 1 ../langdata/eng/eng.wordlist /tmp/tmp.zcXnVfrrrA/eng/eng.word-dawg /tmp/tmp.zcXnVfrrrA/eng/eng.unicharset
+Set reverse_policy to RRP_REVERSE_IF_HAS_RTL
+Loading unicharset from '/tmp/tmp.zcXnVfrrrA/eng/eng.unicharset'
+Reading word list from '../langdata/eng/eng.wordlist'
+Reducing Trie to SquishedDawg
+Writing squished DAWG to '/tmp/tmp.zcXnVfrrrA/eng/eng.word-dawg'
+Generating frequent-word Dawg
+[Wed Dec 7 11:11:59 DST 2016] /usr/local/bin/wordlist2dawg -r 1 /tmp/tmp.zcXnVfrrrA/eng/eng.wordlist.clean.freq /tmp/tmp.zcXnVfrrrA/eng/eng.freq-dawg /tmp/tmp.zcXnVfrrrA/eng/eng.unicharset
+Set reverse_policy to RRP_REVERSE_IF_HAS_RTL
+Loading unicharset from '/tmp/tmp.zcXnVfrrrA/eng/eng.unicharset'
+Reading word list from '/tmp/tmp.zcXnVfrrrA/eng/eng.wordlist.clean.freq'
+Reducing Trie to SquishedDawg
+Writing squished DAWG to '/tmp/tmp.zcXnVfrrrA/eng/eng.freq-dawg'
+[Wed Dec 7 11:11:59 DST 2016] /usr/local/bin/wordlist2dawg -r 0 ../langdata/eng/eng.punc /tmp/tmp.zcXnVfrrrA/eng/eng.punc-dawg /tmp/tmp.zcXnVfrrrA/eng/eng.unicharset
+Set reverse_policy to RRP_DO_NO_REVERSE
+Loading unicharset from '/tmp/tmp.zcXnVfrrrA/eng/eng.unicharset'
+Reading word list from '../langdata/eng/eng.punc'
+Reducing Trie to SquishedDawg
+Writing squished DAWG to '/tmp/tmp.zcXnVfrrrA/eng/eng.punc-dawg'
+[Wed Dec 7 11:11:59 DST 2016] /usr/local/bin/wordlist2dawg -r 0 ../langdata/eng/eng.numbers /tmp/tmp.zcXnVfrrrA/eng/eng.number-dawg /tmp/tmp.zcXnVfrrrA/eng/eng.unicharset
+Set reverse_policy to RRP_DO_NO_REVERSE
+Loading unicharset from '/tmp/tmp.zcXnVfrrrA/eng/eng.unicharset'
+Reading word list from '../langdata/eng/eng.numbers'
+Reducing Trie to SquishedDawg
+Writing squished DAWG to '/tmp/tmp.zcXnVfrrrA/eng/eng.number-dawg'
+[Wed Dec 7 11:12:00 DST 2016] /usr/local/bin/wordlist2dawg -r 1 ../langdata/eng/eng.word.bigrams /tmp/tmp.zcXnVfrrrA/eng/eng.bigram-dawg /tmp/tmp.zcXnVfrrrA/eng/eng.unicharset
+Set reverse_policy to RRP_REVERSE_IF_HAS_RTL
+Loading unicharset from '/tmp/tmp.zcXnVfrrrA/eng/eng.unicharset'
+Reading word list from '../langdata/eng/eng.word.bigrams'
+Reducing Trie to SquishedDawg
+Writing squished DAWG to '/tmp/tmp.zcXnVfrrrA/eng/eng.bigram-dawg'
+
+=== Phase E: Generating lstmf files ===
+Using TESSDATA_PREFIX=./tessdata
+[Wed Dec 7 11:12:50 DST 2016] /usr/local/bin/tesseract /tmp/tmp.zcXnVfrrrA/eng/eng.Impact_Condensed.exp0.tif /tmp/tmp.zcXnVfrrrA/eng/eng.Impact_Condensed.exp0 lstm.train
+Tesseract Open Source OCR Engine v4.00.00alpha with Leptonica
+Page 1
+Error in pixaGetCount: pixa not defined
+Error in pixaGetCount: pixa not defined
+Page 2
+Error in pixaGetCount: pixa not defined
+Error in pixaGetCount: pixa not defined
+Loaded 49/49 pages (0-49) of document /tmp/tmp.zcXnVfrrrA/eng/eng.Impact_Condensed.exp0.lstmf
+
+=== Constructing LSTM training data ===
+Creating new directory /home/shree/tesstutorial/engeval
+Moving /tmp/tmp.zcXnVfrrrA/eng/eng.unicharset to /home/shree/tesstutorial/engeval
+Moving /tmp/tmp.zcXnVfrrrA/eng/eng.number-dawg to /home/shree/tesstutorial/engeval/eng.lstm-number-dawg
+Moving /tmp/tmp.zcXnVfrrrA/eng/eng.punc-dawg to /home/shree/tesstutorial/engeval/eng.lstm-punc-dawg
+Moving /tmp/tmp.zcXnVfrrrA/eng/eng.word-dawg to /home/shree/tesstutorial/engeval/eng.lstm-word-dawg
+Moving /tmp/tmp.zcXnVfrrrA/eng/eng.Impact_Condensed.exp0.lstmf to /home/shree/tesstutorial/engeval
+
+Completed training for language 'eng'
+
